@@ -13,11 +13,14 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="#">LeafNet</a>
+            <a class="navbar-brand fw-bold" href="{% url "index" %}">LeafNet</a>
             <div class="collapse navbar-collapse justify-content-end">
                 <ul class="navbar-nav">
 
                     {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="btn btn-outline-primary" href="{% url 'password-change' %}">Change Password</a>
+                        </li>
                         <li class="nav-item">
                             <form method="post" action="{% url 'logout' %}">
                                 {% csrf_token %}
