@@ -1,11 +1,63 @@
 {% extends "users/base.html" %}
+{% load widget_tweaks %}
 
 {% block body %}
-    <h1>Edit Profile</h1>
-    <form action="" method='POST' enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
-        <input type="submit" value="Submit">
-    </form>
+<div class="max-w-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+  <h1 class="text-3xl font-semibold text-gray-800 mb-6 text-center">✏️ Edit Profile</h1>
+
+  <form method="POST" enctype="multipart/form-data" class="bg-white shadow-md rounded-xl p-6 space-y-6">
+    {% csrf_token %}
+
+    <!-- First Name -->
+    <div>
+      <label for="{{ user_form.first_name.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
+        First Name
+      </label>
+      {{ user_form.first_name|add_class:"w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-blue-500" }}
+      {% if user_form.first_name.errors %}
+        <p class="text-sm text-red-500 mt-1">{{ user_form.first_name.errors|striptags }}</p>
+      {% endif %}
+    </div>
+
+    <!-- Last Name -->
+    <div>
+      <label for="{{ user_form.last_name.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
+        Last Name
+      </label>
+      {{ user_form.last_name|add_class:"w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-blue-500" }}
+      {% if user_form.last_name.errors %}
+        <p class="text-sm text-red-500 mt-1">{{ user_form.last_name.errors|striptags }}</p>
+      {% endif %}
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label for="{{ user_form.email.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
+        Email
+      </label>
+      {{ user_form.email|add_class:"w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-blue-500" }}
+      {% if user_form.email.errors %}
+        <p class="text-sm text-red-500 mt-1">{{ user_form.email.errors|striptags }}</p>
+      {% endif %}
+    </div>
+
+    <!-- Profile Photo -->
+    <div>
+      <label for="{{ profile_form.photo.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
+        Profile Photo
+      </label>
+      {{ profile_form.photo|add_class:"w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:border file:rounded file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" }}
+      {% if profile_form.photo.errors %}
+        <p class="text-sm text-red-500 mt-1">{{ profile_form.photo.errors|striptags }}</p>
+      {% endif %}
+    </div>
+
+    <!-- Submit Button -->
+    <div class="pt-4">
+      <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow">
+        ✅ Save Changes
+      </button>
+    </div>
+  </form>
+</div>
 {% endblock body %}
