@@ -2,8 +2,14 @@
 leafnet_venv/
 
 # Ignore Python cache files
-**/__pycache__/
+__pycache__/
 *.pyc
 
 # Ignore SQLite DB
 db.sqlite3
+
+# Ignore Node Modules
+node_modules/
+
+# Ignore styles.css
+users/static/users/styles.css

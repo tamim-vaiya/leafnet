@@ -1,0 +1,23 @@
+{
+    "emmet.includeLanguages": {
+        "html": "html",
+        "django-html": "html"
+    },
+    "tailwindCSS.includeLanguages": {
+        "django-html": "html"
+    },
+    "tailwindCSS.experimental.classRegex": [
+        [
+            "class(?:Name)?=\\\"([^\\\"]*)\\\"",
+            1
+        ],
+        [
+            "class:\\s*'([^']*)'",
+            1
+        ],
+        [
+            "class:\\s*\\\"([^\\\"]*)\\\"",
+            1
+        ]
+    ]
+}
