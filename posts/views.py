@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import PostCreateForm
 from django.contrib.auth.decorators import login_required
 
@@ -11,6 +11,7 @@ def post_create(request):
             new_item = form.save(commit=False)
             new_item.user = request.user
             new_item.save()
+            return redirect('index')
     else:
-        form = PostCreateForm(data = request.GET)
+        form = PostCreateForm()
     return render(request, 'posts/create.html', {'form':form})

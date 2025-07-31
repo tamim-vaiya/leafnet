@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
@@ -15,9 +15,10 @@ def user_login(request):
             user = authenticate(request, username = data['username'], password = data['password'])
             if user is not None:
                 login(request, user)
-                return render(request, 'users/index.html')
+                return redirect('index')
             else:
-                return HttpResponse("Invalid User!")
+                error_message = "Invalid username or password. Please try again."
+                return render(request, 'users/login.html', {'form': form, 'error_message': error_message})
 
     else:
         form = LoginForm()
@@ -51,6 +52,7 @@ def edit(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
+            return redirect('index')
     else:
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance = request.user.profile)
