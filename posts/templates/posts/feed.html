@@ -1,5 +1,6 @@
 {% extends "users/base.html" %}
 {% load static %}
+{% load mathfilters %}
 
 {% block body %}
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -41,6 +42,16 @@
                 <img class="w-6 h-6" src="{% static 'users/images/share.png' %}" alt="Share">
               </button>
             </div>
+          </div>
+
+          <!-- Likes Counter -->
+          <div class='ml-4 px-2'>
+            {% if post.liked_by.count < 1 %}
+            {% elif post.liked_by.count == 1 %}
+                <p class='text-gray-500'>{{ post.liked_by.first }} likes it.</p>
+            {% elif post.liked_by.count > 1 %}
+                <p class='text-gray-500'>{{ post.liked_by.first }} and {{ post.liked_by.count|sub:1 }} others like it</p> <!-- I can do this too: {{ post.liked_by.count|add:"-1" }}  --> 
+            {% endif %}
           </div>
 
           <!-- Post Content -->

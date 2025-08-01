@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'users',
     'posts',
+    'mathfilters',
     'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
