@@ -27,9 +27,9 @@
           <!-- Social Icons -->
           <div class="px-5 py-3">
             <div class="flex items-center gap-4">
-              <button class="hover:scale-110 transition-transform duration-200">
-                <img class="w-6 h-6" src="{% static 'users/images/heart.png' %}" alt="Like">
-              </button>
+              <a id={{ post.id }} class ="btn-like">
+                  <img class="w-6 h-6" src="{% static 'users/images/heart.png' %}" alt="Like">
+              </a>
               <button class="hover:scale-110 transition-transform duration-200">
                 <img class="w-6 h-6" src="{% static 'users/images/comment.png' %}" alt="Comment">
               </button>
@@ -53,4 +53,18 @@
     <p class="text-center text-gray-500 text-lg italic mt-16">No posts yet. Start sharing your moments!</p>
   {% endif %}
 </div>
+<script type="text/javascript">
+    window.CSRF_TOKEN = "{{csrf_token}}";
+    $(document).on('click', '.btn-like', function() {
+        var post_id = this.id;
+        $.ajax({
+            method: "POST",
+            url: "/posts/like/",
+            data : {post_id:post_id},
+            headers: {
+                "X-CSRFToken": window.CSRF_TOKEN
+            },
+        });
+    });
+</script>
 {% endblock body %}

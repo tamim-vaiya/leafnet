@@ -26,7 +26,8 @@ def feed(request):
 def like_post(request):
     post_id = request.POST.get('post_id')
     post = get_object_or_404(Post, id = post_id)
-    if post.liked_by.filter(id=request.user.id).exist():
+    if post.liked_by.filter(id=request.user.id).exists():
         post.liked_by.remove(request.user)
     else:
         post.liked_by.add(request.user)
+    return redirect('feed')
