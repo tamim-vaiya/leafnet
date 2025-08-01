@@ -13,3 +13,6 @@ node_modules/
 
 # Ignore styles.css
 users/static/users/styles.css
+
+#Ignore media file
+media/
