@@ -28,7 +28,11 @@
           <div class="px-5 py-3">
             <div class="flex items-center gap-4">
               <a id={{ post.id }} class ="btn-like">
-                  <img class="w-6 h-6" src="{% static 'users/images/heart.png' %}" alt="Like">
+                {% if logged_user in post.liked_by.all %}
+                    <img class="w-6 h-6" src="{% static 'users/images/redheart.png' %}" alt="Like">
+                {% else %}
+                    <img class="w-6 h-6" src="{% static 'users/images/heart.png' %}" alt="Like">
+                {% endif %}
               </a>
               <button class="hover:scale-110 transition-transform duration-200">
                 <img class="w-6 h-6" src="{% static 'users/images/comment.png' %}" alt="Comment">
@@ -63,6 +67,10 @@
             data : {post_id:post_id},
             headers: {
                 "X-CSRFToken": window.CSRF_TOKEN
+            },
+            success: function(response) {
+                // window.location.href = "http://localhost:8000/posts/feed/";
+                window.location.reload();
             },
         });
     });
