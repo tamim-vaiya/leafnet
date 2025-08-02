@@ -9,4 +9,4 @@ class PostCreateForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        field = ['body']
+        fields = ['body']
