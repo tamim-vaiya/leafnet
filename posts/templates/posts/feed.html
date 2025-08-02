@@ -70,20 +70,18 @@
             {% endfor %}
           </div>
           <div class="p-5">
-            <form method="POST">
+            <form method="POST" class="bg-white shadow-md m-10 w-4/5 rounded px-8 pt-6 pb-8 mb-4">
                 {% csrf_token %}
-                <div>
-                    <label for="">Add Comment</label>
+                <div class="mb-2">
+                    <label for="" class="block text-gray-700 text-sm font-bold mb-2">Add Comment</label>
                 </div>
-                <div>
+                <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
                     {{ comment_form.body }}
                 </div>
                 <div>
                     <input type="hidden" name="post_id" id="post_id" value="{{ post.id }}">
                 </div>
-                <div>
-                    <button type="submit">Comment</button>
-                </div>
+                <button type="submit" class="bg-green-500 text-white px-5 py-2">Comment</button>
             </form>
           </div>
         </div>
