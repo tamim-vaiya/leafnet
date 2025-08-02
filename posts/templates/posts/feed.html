@@ -67,6 +67,12 @@
                 {{ comment.body }}
             {% endfor %}
           </div>
+          <div class="p-5">
+            <form method="POST">
+                {% csrf_token %}
+                
+            </form>
+          </div>
         </div>
       {% endfor %}
     </div>
