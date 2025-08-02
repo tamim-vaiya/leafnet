@@ -61,6 +61,12 @@
               <p class="text-gray-700 pb-3 text-base leading-snug mt-1">{{ post.caption }}</p>
             {% endif %}
           </div>
+          <div class="px-6 py-4">
+            <h4 class="font-bold text-xl">All Comments</h4>
+            {% for comment in post.comments.all %}
+                {{ comment.body }}
+            {% endfor %}
+          </div>
         </div>
       {% endfor %}
     </div>
