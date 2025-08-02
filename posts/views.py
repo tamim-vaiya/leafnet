@@ -28,6 +28,7 @@ def feed(request):
         new_comment.post = post
         # new_comment.user = request.user
         new_comment.save()
+        comment_form = CommentForm()
     else:
         comment_form = CommentForm()
 
