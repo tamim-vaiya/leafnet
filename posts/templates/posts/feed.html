@@ -65,7 +65,7 @@
           <div class="px-6 py-4">
             <h4 class="font-bold text-xl">All Comments</h4>
             {% for comment in post.comments.all %}
-                {{ comment.body }}
+                <b>{{ comment.posted_by }}: </b> {{ comment.body }}
                 <br>
             {% endfor %}
           </div>
@@ -80,6 +80,7 @@
                 </div>
                 <div>
                     <input type="hidden" name="post_id" id="post_id" value="{{ post.id }}">
+                    <input type="hidden" name="posted_by" id="posted_by" value="{{ logged_user }}">
                 </div>
                 <button type="submit" class="bg-green-500 text-white px-5 py-2">Comment</button>
             </form>
